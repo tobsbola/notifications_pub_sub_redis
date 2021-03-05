@@ -10,7 +10,7 @@ services:
             - "8000:8000"
         volumes: 
             - /app/node_modules
-            - ./server:/app
+            - ./publish:/app
         environment: 
             - PORT=8000
             - REDIS_HOST=redis
@@ -23,7 +23,7 @@ services:
         - "9000:9000" 
         volumes: 
             - /app/node_modules
-            - ./worker:/app
+            - ./subscribe:/app
         environment: 
             - PORT=9000
             - REDIS_HOST=redis
