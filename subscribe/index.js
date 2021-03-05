@@ -16,6 +16,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // routes
+app.get('/', (req, res) => {
+    return res.json({ hi: 'subscriber in here!' });
+})
+
 app.post('/subscribe/:topic', async (req, res) => {
     try {
         const { url } = req.body;
@@ -42,3 +46,4 @@ app.listen(keys.serverPort || 9000, () => {
     console.log(`Subscriber running on PORT: ${keys.serverPort}`);
 });
 
+module.exports = app;
