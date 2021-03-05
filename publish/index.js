@@ -19,7 +19,7 @@ const redisPublisher = redisClient.duplicate();
 
 // routes
 app.get('/', (req, res) => {
-    return res.json({ hi: 'there!' });
+    return res.json({ hi: 'publisher in here!' });
 })
 
 app.post('/publish/:topic', async (req, res) => {
