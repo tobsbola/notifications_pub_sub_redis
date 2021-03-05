@@ -5,7 +5,7 @@ services:
     publisher:
         build: 
             dockerfile: Dockerfile
-            context: ./server
+            context: ./publish
         ports:
             - "8000:8000"
         volumes: 
@@ -18,7 +18,7 @@ services:
     subscriber:
         build: 
             dockerfile: Dockerfile
-            context: ./worker
+            context: ./subscribe
         ports:
         - "9000:9000" 
         volumes: 
