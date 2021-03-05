@@ -1,0 +1,30 @@
+version: '3'
+services: 
+    redis: 
+        image: 'redis:latest'
+    publisher:
+        build: 
+            dockerfile: Dockerfile
+            context: ./server
+        ports:
+            - "8000:8000"
+        volumes: 
+            - /app/node_modules
+            - ./server:/app
+        environment: 
+            - PORT=8000
+            - REDIS_HOST=redis
+            - REDIS_PORT=6379
+    subscriber:
+        build: 
+            dockerfile: Dockerfile
+            context: ./worker
+        ports:
+        - "9000:9000" 
+        volumes: 
+            - /app/node_modules
+            - ./worker:/app
+        environment: 
+            - PORT=9000
+            - REDIS_HOST=redis
+            - REDIS_PORT=6379
