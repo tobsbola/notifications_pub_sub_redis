@@ -34,9 +34,9 @@ app.post('/publish/:topic', async (req, res) => {
         const dataBuffer = Buffer.from(JSON.stringify(data));
         const success = await redisPublisher.publish(topic, dataBuffer);
         if (success) {
-            res.send({ success, topic, message: `TOPIC: ${topic} published` })
+            return res.send({ success, topic, message: `TOPIC: ${topic} published` })
         }
-        res.status(400).send({ success, topic, message: `Error publushing the TOPIC: ${topic}` })
+        return res.status(400).send({ success, topic, message: `Error publushing the TOPIC: ${topic}` })
     } catch (error) {
         console.log({ error })
         res.status(400).send({ success, topic, message: `Oops..., an error occurred` })
