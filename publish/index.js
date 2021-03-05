@@ -25,9 +25,9 @@ app.get('/', (req, res) => {
 app.post('/publish/:topic', async (req, res) => {
     try {
         const { topic } = req.params;
-        const { data } = req.body;
+        const data = req.body;
         
-        if (typeof data !== 'object' || data === null) {
+        if (typeof data !== 'object' || Object.keys(data).length === 0) {
             return res.status(422).json({ message: 'Invalid object supplied' });
         }
     
