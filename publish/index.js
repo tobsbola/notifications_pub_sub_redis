@@ -19,7 +19,7 @@ const redisPublisher = redisClient.duplicate();
 
 // routes
 app.get('/', (req, res) => {
-    res.send('Welcome to publisher!');
+    return res.json({ hi: 'there!' });
 })
 
 app.post('/publish/:topic', async (req, res) => {
@@ -50,3 +50,5 @@ app.post('/publish/:topic', async (req, res) => {
 app.listen(keys.serverPort || 8000, () => {
     console.log(`Publisher running on PORT: ${keys.serverPort}`);
 });
+
+module.exports = app;
