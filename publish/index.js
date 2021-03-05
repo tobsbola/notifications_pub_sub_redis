@@ -27,8 +27,12 @@ app.post('/publish/:topic', async (req, res) => {
         const { topic } = req.params;
         const data = req.body;
         
-        if (typeof data !== 'object' || Object.keys(data).length === 0) {
-            return res.status(422).json({ message: 'Invalid object supplied' });
+        if (Object.keys(data).length === 0) {
+            return res.status(422).json({ message: 'Body parameter(s) required' });
+        }
+
+        if (typeof data !== 'object') {
+            return res.status(422).json({ message: 'Body must be a valid object' });
         }
     
         const dataBuffer = Buffer.from(JSON.stringify(data));
